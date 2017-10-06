@@ -3,7 +3,6 @@
 using namespace std ; 
 int mat1[3][3];
 int mat2[3][3];
-int mat3[3][3];
 bool fail = false;
 int y,x;
 bool sucsess=true;
