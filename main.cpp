@@ -5,49 +5,48 @@ int mat1[3][3];
 int mat2[3][3];
 int mat3[3][3];
 bool fail = false;
-int y,x;
-bool sucsess=true;
+int index_stroki;
+int index_marix;
+int index_str;
 bool stroka(int array[3])
-    {       
+{       
         string str1;
-        int a=0;
+        int numb=0;
         if( !getline(cin , str1) || str1.length()==0)
         {
             fail= true;        
         }
         else 
         {
-            x=0;
+            index_stroki=0;
             int len= str1.length();
-            for (int i=0 ; i<len;i++)
+            for (int index_str=0 ; index_str<len;index_str++)
             {
                 int k=1;
-                a=a*k;
-                if(str1[i]!=' ')
+                numb=numb*k;
+                if(str1[index_str]!=' ')
                 {
-                    a=a+((int)str1[i]-'0');
+                    numb=numb+((int)str1[index_str]-'0');
                     k=k*10;
-                    array[x]=a;
+                    array[index_stroki]=numb;
                 }   
                 else
                 {
-                    x++;
-                    a=0;
+                    index_stroki++;
+                    numb=0;
                     k=0;
                 }    
             }   
         }
-        if (x!=2) fail=true;    
+        if (index_stroki!=2) fail=true;    
         return !fail;    
-    }
+}
 int main()
 {
-    for(int y=0; y<3 ;y++)
+    for(int index_marix=0; index_marix<3 ;index_marix++)
     {
-        if( stroka(mat1[y]))
-        {}
-        else 
-        {   
+        if( !(stroka(mat1[index_marix])))
+        {
             cout <<  "fail";
             return -1;
         }
@@ -55,57 +54,55 @@ int main()
     char ch;
     cin >> ch;
     cin.get();
-    for(int y=0; y<3 ;y++)
+    for(int index_marix=0; index_marix<3 ;index_marix++)
     {
-        if( stroka(mat2[y]))
-        {}
-        else 
-        {   
+        if( !(stroka(mat2[index_marix])))
+        {
             cout <<  "fail"; 
             return -1 ;
         }
     }    
-    if(!fail)
+    
+    
+    if(ch=='+')
     {
-        if(ch=='+')
+        for( int i = 0; i < 3; ++i ) 
         {
-            for( int i = 0; i < 3; ++i ) 
+            cout << endl; 
+            for( int j = 0; j < 3; ++j ) 
             {
-                cout << endl; 
-                for( int j = 0; j < 3; ++j ) 
-                {
-                    cout<<mat1[i][j]+mat2[i][j]<<" ";
-                }
+                cout<<mat1[i][j]+mat2[i][j]<<" ";
             }
         }
-        else if(ch == '-')
+    }
+    else if(ch == '-')
+    {
+        for( int i = 0; i < 3; ++i ) 
         {
-            for( int i = 0; i < 3; ++i ) 
+            cout<<endl;
+            for( int j = 0; j < 3; ++j ) 
             {
-                cout<<endl;
-                for( int j = 0; j < 3; ++j ) 
-                {
-                    cout<<mat1[i][j]-mat2[i][j]<<" ";
-                }
+                cout<<mat1[i][j]-mat2[i][j]<<" ";
             }
         }
-        else if(ch=='*')
+    }
+    else if(ch=='*')
+    {
+        for( int i = 0; i < 3; ++i ) 
         {
-            for( int i = 0; i < 3; ++i ) 
+            cout<<endl;
+            for( int j = 0; j < 3; ++j ) 
             {
-                cout<<endl;
-                for( int j = 0; j < 3; ++j ) 
+                int result = 0;
+                for( int k = 0; k < 3; ++k ) 
                 {
-                    int result = 0;
-                    for( int k = 0; k < 3; ++k ) 
-                    {
-                        result += mat1[i][k] * mat2[k][j];                              
-                    }
-                    mat3[i][j] = result;
-                    cout << mat3[i][j]<<" ";                                     
+                    result += mat1[i][k] * mat2[k][j];                              
                 }
-            } 
-        }
-    }    
+                mat3[i][j] = result;
+                cout << mat3[i][j]<<" ";                                     
+            }
+        } 
+    }
+       
 
 }
